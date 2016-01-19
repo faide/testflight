@@ -15,20 +15,21 @@ func (requester *Requester) Get(route string, mods ...func(*http.Request) error)
 	return requester.performRequest("GET", route, "", "", mods...)
 }
 
-func (requester *Requester) Post(route, contentType, body string, mods ...func(*http.Request) error) *Response {
+func (requester *Requester) Post(route string, contentType string, body string, mods ...func(*http.Request) error) *Response {
 	return requester.performRequest("POST", route, contentType, body, mods...)
 }
 
-func (requester *Requester) Put(route, contentType, body string, mods ...func(*http.Request) error) *Response {
+func (requester *Requester) Put(route string, contentType string, body string, mods ...func(*http.Request) error) *Response {
 	return requester.performRequest("PUT", route, contentType, body, mods...)
 }
 
-func (requester *Requester) Patch(route, contentType, body string, mods ...func(*http.Request) error) *Response {
+func (requester *Requester) Patch(route string, contentType string, body string, mods ...func(*http.Request) error) *Response {
 	return requester.performRequest("PATCH", route, contentType, body, mods...)
 }
 
-func (requester *Requester) Delete(route, contentType, body string, mods ...func(*http.Request) error) *Response {
-	return requester.performRequest("DELETE", route, contentType, body, mods...)
+// Delete changed signature to match BackboneJS convention of DELETE with /id and no body content
+func (requester *Requester) Delete(route string, contentType string, mods ...func(*http.Request) error) *Response {
+	return requester.performRequest("DELETE", route, contentType, "", mods...)
 }
 
 func (requester *Requester) Do(request *http.Request) *Response {
