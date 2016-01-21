@@ -32,6 +32,11 @@ func (requester *Requester) Delete(route string, contentType string, mods ...fun
 	return requester.performRequest("DELETE", route, contentType, "", mods...)
 }
 
+// Original delete
+func (requester *Requester) DeleteWithBody(route string, contentType string, body string, mods ...func(*http.Request) error) *Response {
+	return requester.performRequest("DELETE", route, contentType, body, mods...)
+}
+
 func (requester *Requester) Do(request *http.Request) *Response {
 	fullUrl, err := url.Parse(requester.httpUrl(request.URL.String()))
 	if err != nil {
