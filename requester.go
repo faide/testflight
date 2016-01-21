@@ -28,12 +28,12 @@ func (requester *Requester) Patch(route string, contentType string, body string,
 }
 
 // Delete changed signature to match BackboneJS convention of DELETE with /id and no body content
-func (requester *Requester) Delete(route string, contentType string, mods ...func(*http.Request) error) *Response {
+func (requester *Requester) DeleteWithoutBody(route string, contentType string, mods ...func(*http.Request) error) *Response {
 	return requester.performRequest("DELETE", route, contentType, "", mods...)
 }
 
-// Original delete
-func (requester *Requester) DeleteWithBody(route string, contentType string, body string, mods ...func(*http.Request) error) *Response {
+// Delete with a body content
+func (requester *Requester) Delete(route string, contentType string, body string, mods ...func(*http.Request) error) *Response {
 	return requester.performRequest("DELETE", route, contentType, body, mods...)
 }
 
